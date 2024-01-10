@@ -1,4 +1,5 @@
 import requests
+from tkinter import *
 from bs4 import BeautifulSoup
 
 link = "https://www.google.com/search?q=Cotacao+do+dolar+hoje"
@@ -21,3 +22,8 @@ valueBrazil = site.find("span", class_="SwHCTb")
 print("Valor com precisão: R$", valueBrazil["data-value"], sep=" ")
 
 print("Valor arredondado: R$", valueBrazil.get_text(), sep=" ")
+
+window = Tk()
+window.title(title.get_text())
+
+window.mainloop()
