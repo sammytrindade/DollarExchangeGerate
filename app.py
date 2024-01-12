@@ -30,6 +30,17 @@ def main():
 
 
 window = Tk()
-window.title(title.get_text())
+window.title("Cotação atual do Dolar para real")
+window.geometry("400x200")
+
+firstText = Label(window, text="Veja a cotação do dolar para o real", padx=50)
+firstText.grid(column=1, row=0, padx=10, pady=10)
+
+buttonExchangeConfirm = Button(window, text="Gerar cotação", command=main)
+buttonExchangeConfirm.grid(column=1, row=1)
+
+
+textExchange = Label(window, text="")
+textExchange.grid(column=1, row=2)
 
 window.mainloop()
