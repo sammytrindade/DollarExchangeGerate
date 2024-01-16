@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from tkinter import *
+from datetime import datetime
 
 
 def main():
@@ -20,14 +21,23 @@ def main():
         valueDolar = site.find("span", class_="DFlfde")
         valueBrazil = site.find("span", class_="SwHCTb")
 
-        text = f"""
+        text = f""" 
+                {showDateAndHour()}
+
                 {valueDolar.getText()} Dólar Americano na cotação de hoje:
+                
                 Valor com precisão: R${valueBrazil["data-value"]}
                 Valor arredondado: R${valueBrazil.get_text()}"""
     except AttributeError as e:
         text = f"Erro: {e}"
     textExchange["text"] = text
 
+def showDateAndHour():
+    """Esta função imprime data e hora atual"""
+    today = datetime.now()
+    hour = today.strftime("%H:%M:%S")
+    date = today.strftime("%d/%m/%Y")
+    return f"Data: {date}  /  Horário: {hour}"
 
 window = Tk()
 window.title("Cotação atual do Dolar para real")
@@ -38,7 +48,6 @@ firstText.grid(column=1, row=0, padx=10, pady=10)
 
 buttonExchangeConfirm = Button(window, text="Gerar cotação", command=main)
 buttonExchangeConfirm.grid(column=1, row=1)
-
 
 textExchange = Label(window, text="")
 textExchange.grid(column=1, row=2)
